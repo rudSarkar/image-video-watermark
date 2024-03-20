@@ -84,7 +84,7 @@ def add_watermark_video(file_path):
     watermark_path = "watermark.png"
 
     # Remove audio from the video
-    video_clip = VideoFileClip(file_path).subclip(0, 14)
+    video_clip = VideoFileClip(file_path).subclip(0, 13)
 
     # Add new audio
     new_audio = AudioFileClip(audio_path)
@@ -93,7 +93,7 @@ def add_watermark_video(file_path):
     # Add watermark
     watermarked_clip = add_watermark(video_clip, watermark_path)
 
-    # Write the final video with watermark
+    # Write the final video with watermark using libx264 codec for both video and audio
     watermarked_clip.write_videofile(file_path, codec='libx264', audio_codec='aac')
 
     delete_mp4_files(os.getcwd())
